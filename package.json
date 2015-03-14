@@ -1,0 +1,20 @@
+{
+  "name": "bograch",
+  "version": "0.0.1",
+  "description": "A communication gateway for NodeJS microservices.",
+  "main": ".lib/index.js",
+  "scripts": {
+    "test": "mocha -R spec test/"
+  },
+  "keywords": [
+    "microservice",
+    "node",
+    "communication"
+  ],
+  "author": "Zoltan Kochan",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~2.2.1",
+    "chai": "~2.1.1"
+  }
+}
