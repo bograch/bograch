@@ -1,8 +1,8 @@
 {
   "name": "bograch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A communication gateway for NodeJS microservices.",
-  "main": ".lib/index.js",
+  "main": "./lib",
   "scripts": {
     "test": "mocha -R spec test/"
   },
