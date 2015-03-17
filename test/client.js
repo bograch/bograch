@@ -1,13 +1,13 @@
 'use strict';
 
-var BograchClient = require('../lib/bograch-client');
+var Client = require('../lib/client');
 var expect = require('chai').expect;
 
 var noop = function () {};
-var provider = {
+var transporter = {
   call: noop
 };
-var boClient = new BograchClient(provider, {
+var boClient = new Client(transporter, {
   name: 'test'
 });
 

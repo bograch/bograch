@@ -1,38 +1,38 @@
 'use strict';
 
-var BograchWorker = require('../lib/bograch-worker');
+var Server = require('../lib/server');
 var expect = require('chai').expect;
 
 var noop = function () {};
-var provider = {
+var transporter = {
   on: noop
 };
-var boWorker = new BograchWorker(provider, {
+var boServer = new Server(transporter, {
   name: 'test'
 });
 
-describe('Bograch worker on', function () {
+describe('Bograch server on', function () {
   it('should throw an error if no parameters were passed', function () {
     expect(function () {
-      boWorker.on();
+      boServer.on();
     }).to.throw(TypeError, 'Bograch.on requires a message');
   });
   
   it('should throw an error if no callback function is passed', function () {
     expect(function () {
-      boWorker.on('foo');
+      boServer.on('foo');
     }).to.throw(TypeError, 'Bograch.on requires a callback function');
   });
   
   it('should throw an error if invalid callback function is passed', function () {
     expect(function () {
-      boWorker.on('foo', 234);
+      boServer.on('foo', 234);
     }).to.throw(TypeError, 'Bograch.on requires a callback function');
   });
   
   it('should not throw an exception if the second parameter is a callback function', function () {
     expect(function () {
-      boWorker.on('foo', noop);
+      boServer.on('foo', noop);
     }).not.to.throw(Error);
   });
 });
