@@ -7,7 +7,9 @@ var noop = function () {};
 var provider = {
   call: noop
 };
-var boClient = new BograchClient(provider);
+var boClient = new BograchClient(provider, {
+  name: 'test'
+});
 
 describe('Bograch client call', function () {
   it('should throw an error if no parameters were passed', function () {

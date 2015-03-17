@@ -7,7 +7,9 @@ var noop = function () {};
 var provider = {
   on: noop
 };
-var boWorker = new BograchWorker(provider);
+var boWorker = new BograchWorker(provider, {
+  name: 'test'
+});
 
 describe('Bograch worker on', function () {
   it('should throw an error if no parameters were passed', function () {

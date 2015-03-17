@@ -48,7 +48,7 @@ describe('Bograch client', function () {
 
   it('should throw error if no provider with the passed name was found', function () {
     expect(function () {
-      bo.client('foo');
+      bo.client('foo', { name: 'test' });
     }).to.throw(Error, 'No provider with the specified name has been found');
   });
 
@@ -56,7 +56,7 @@ describe('Bograch client', function () {
     bo.use('foo', {
       name: 'foo'
     });
-    expect(bo.client('foo')).not.to.be.a('null');
+    expect(bo.client('foo', { name: 'test' })).not.to.be.a('null');
   });
 });
 
@@ -73,14 +73,15 @@ describe('Bograch worker', function () {
 
   it('should throw error if no provider with the passed name was found', function () {
     expect(function () {
-      bo.worker('foo');
+      bo.worker('foo', { name: 'test' });
     }).to.throw(Error, 'No provider with the specified name has been found');
   });
 
-  it('should return client if provider is found', function () {
+  it('should return worker if provider is found', function () {
     bo.use('foo', {
-      name: 'foo'
+      name: 'foo',
+      on: function () {}
     });
-    expect(bo.worker('foo')).not.to.be.a('null');
+    expect(bo.worker('foo', { name: 'test' })).not.to.be.a('null');
   });
 });
