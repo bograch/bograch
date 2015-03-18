@@ -40,7 +40,7 @@ describe('Bograch client', function () {
     bo._transporters = {};
   });
 
-  it('should thrown error if no transporter name was passed', function () {
+  it('should throw error if no transporter name was passed', function () {
     expect(function () {
       bo.client();
     }).to.throw(TypeError, 'Can\'t get a Bograch client w/o a name');
@@ -54,7 +54,8 @@ describe('Bograch client', function () {
 
   it('should return client if transporter is found', function () {
     bo.use('foo', {
-      name: 'foo'
+      name: 'foo',
+      call: function () {}
     });
     expect(bo.client('foo', { name: 'test' })).not.to.be.a('null');
   });
@@ -65,7 +66,7 @@ describe('Bograch server', function () {
     bo._transporters = {};
   });
 
-  it('should thrown error if no transporter name was passed', function () {
+  it('should throw error if no transporter name was passed', function () {
     expect(function () {
       bo.server();
     }).to.throw(TypeError, 'Can\'t get a Bograch server w/o a name');

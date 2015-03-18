@@ -2,11 +2,10 @@
 
 var Server = require('../lib/server');
 var expect = require('chai').expect;
+var TransporterMock = require('./transporter-mock');
 
 var noop = function () {};
-var transporter = {
-  on: noop
-};
+var transporter = new TransporterMock();
 var boServer = new Server(transporter, {
   name: 'test'
 });
