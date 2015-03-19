@@ -1,6 +1,6 @@
 {
   "name": "bograch",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A communication gateway for NodeJS microservices.",
   "main": "./lib",
   "scripts": {

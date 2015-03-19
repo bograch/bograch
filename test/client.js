@@ -38,6 +38,14 @@ describe('Bograch client', function () {
         }, noop);
       }).not.to.throw(Error);
     });
+    
+    it('should not throw an exception if no callback function passed', function () {
+      expect(function () {
+        boClient.call('foo', {
+          a: 34
+        });
+      }).not.to.throw(Error);
+    });
   });
   
   describe('register', function () {
