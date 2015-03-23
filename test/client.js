@@ -16,13 +16,13 @@ describe('Bograch client', function () {
     it('should throw an error if no parameters were passed', function () {
       expect(function () {
         boClient.call();
-      }).to.throw(TypeError, 'Bograch.on requires a message');
+      }).to.throw(TypeError, 'Bograch.on requires a methodName');
     });
 
-    it('should throw an error if the third parameter is not a function', function () {
+    it('should not throw an error if the third parameter is not a function', function () {
       expect(function () {
         boClient.call('foo', null, 4234);
-      }).to.throw(TypeError, 'Bograch.call has an invalid callback function');
+      }).not.to.throw(Error);
     });
 
     it('should not throw an exception if the second parameter is a callback function', function () {

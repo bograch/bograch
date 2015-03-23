@@ -14,7 +14,7 @@ describe('Bograch server on', function () {
   it('should throw an error if no parameters were passed', function () {
     expect(function () {
       boServer.on();
-    }).to.throw(TypeError, 'Bograch.on requires a message');
+    }).to.throw(TypeError, 'Bograch.on requires a methodName');
   });
   
   it('should throw an error if no callback function is passed', function () {
