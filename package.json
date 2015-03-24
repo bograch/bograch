@@ -1,17 +1,22 @@
 {
   "name": "bograch",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A communication gateway for NodeJS microservices.",
   "main": "./lib",
   "scripts": {
     "test": "mocha -R spec test/"
   },
   "keywords": [
+    "bograch",
     "microservice",
     "node",
     "communication"
   ],
   "author": "Zoltan Kochan",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zkochan/bograch.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "mocha": "~2.2.1",
