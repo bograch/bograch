@@ -1,6 +1,7 @@
 'use strict';
 
 var Server = require('../lib/server');
+var Client = require('../lib/client');
 var expect = require('chai').expect;
 var TransporterMock = require('./transporter-mock');
 
@@ -33,5 +34,21 @@ describe('Bograch server on', function () {
     expect(function () {
       boServer.on('foo', noop);
     }).not.to.throw(Error);
+  });
+});
+
+describe('Bograch client/server communication', function () {
+  var boClient = new Client(transporter, {
+    name: 'test'
+  });
+  
+  it('should pass all the arguments', function (done) {
+    boServer.on('sum', function (a, b, cb) {
+      expect(a).to.be.equal(32);
+      expect(b).to.be.equal(54);
+      expect(typeof cb).to.be.equal('function');
+      done();
+    });
+    boClient.call('sum', 32, 54);
   });
 });

@@ -61,6 +61,24 @@ describe('Bograch client', function () {
     });
   });
   
+  describe('method', function () {
+    it('should pass argumets to transporter', function (done) {
+      boClient.register(['fooBar']);      
+      transporter._onCall.push(function (method, args, cb) {
+        expect(method).to.be.equal('test.fooBar');
+        expect(args.length).to.be.equal(3);
+        expect(args[0]).to.be.equal(1);
+        expect(args[1]).to.be.equal(2);
+        expect(args[2]).to.be.equal(3);
+        expect(typeof cb).to.be.equal('function');
+        done();
+        transporter._onCall.pop();
+      });
+      
+      boClient.methods.fooBar(1, 2, 3, noop);
+    });
+  });
+  
   describe('proxy', function () {
     it('returned by the server', function (done) {
       bo.use(transporter);

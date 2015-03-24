@@ -3,6 +3,7 @@
 function Transporter() {
   this.name = 'mock';
   this._methods = {};
+  this._onCall = [];
 }
 
 Transporter.prototype.on = function (method, cb) {
@@ -10,6 +11,9 @@ Transporter.prototype.on = function (method, cb) {
 };
 
 Transporter.prototype.call = function (method, args, cb) {
+  this._onCall.forEach(function (fn) {
+    fn(method, args, cb);
+  });
   if (this._methods[method]) {
     this._methods[method](args, cb);
   }
