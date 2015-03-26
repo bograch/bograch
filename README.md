@@ -43,8 +43,8 @@ Math.sum(12, 2, function (err, sum) {
   console.log(sum);
 });
 
-Math.sum(10, function (err, sum) {
-  console.log(sum);
+Math.factorial(10, function (err, result) {
+  console.log(result);
 });
 ```
 
