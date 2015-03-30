@@ -17,19 +17,19 @@ describe('Bograch server on', function () {
       boServer.on();
     }).to.throw(TypeError, 'Bograch.on requires a methodName');
   });
-  
+
   it('should throw an error if no callback function is passed', function () {
     expect(function () {
       boServer.on('foo');
     }).to.throw(TypeError, 'Bograch.on requires a callback function');
   });
-  
+
   it('should throw an error if invalid callback function is passed', function () {
     expect(function () {
       boServer.on('foo', 234);
     }).to.throw(TypeError, 'Bograch.on requires a callback function');
   });
-  
+
   it('should not throw an exception if the second parameter is a callback function', function () {
     expect(function () {
       boServer.on('foo', noop);
@@ -41,7 +41,7 @@ describe('Bograch client/server communication', function () {
   var boClient = new Client(transporter, {
     name: 'test'
   });
-  
+
   it('should pass all the arguments', function (done) {
     boServer.on('sum', function (a, b, cb) {
       expect(a).to.be.equal(32);
@@ -50,5 +50,25 @@ describe('Bograch client/server communication', function () {
       done();
     });
     boClient.call('sum', 32, 54);
+  });
+
+  it('should return error if remote method has an uncaught exception', function (done) {
+    boServer.on('exception', function (cb) {
+      throw 'foo';
+    });
+    boClient.call('exception', function (err) {
+      expect(err).to.be.equal('foo');
+      done();
+    });
+  });
+
+  it('should return error if remote method timed out', function (done) {
+    boServer.on('timeout', function (cb) {
+      'I am not calling the callback function. Ever!';
+    });
+    boClient.call('timeout', function (err) {
+      expect(err.type).to.be.equal('responseTimeout');
+      done();
+    });
   });
 });
