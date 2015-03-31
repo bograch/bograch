@@ -72,4 +72,11 @@ describe('Bograch client/server communication', function () {
       done();
     });
   });
+
+  it('should return error if remote method does not exist', function (done) {
+    boClient.call('lochNess', function (err) {
+      expect(err.type).to.be.equal('invalidMethod');
+      done();
+    });
+  });
 });
