@@ -39,7 +39,8 @@ describe('Bograch server on', function () {
 
 describe('Bograch client/server communication', function () {
   var boClient = new Client(transporter, {
-    name: 'test'
+    name: 'test',
+    ttl: 10
   });
 
   it('should pass all the arguments', function (done) {
