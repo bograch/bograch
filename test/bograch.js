@@ -2,6 +2,7 @@
 
 var bo = require('../lib');
 var expect = require('chai').expect;
+var transporterMock = require('./transporter-mock');
 
 describe('Bograch use', function () {
   it('should return an error if nothing was passed', function () {
@@ -53,10 +54,7 @@ describe('Bograch client', function () {
   });
 
   it('should return client if transporter is found', function () {
-    bo.use('foo', {
-      name: 'foo',
-      call: function () {}
-    });
+    bo.use('foo', transporterMock);
     expect(bo.client('foo', { name: 'test' })).not.to.be.a('null');
   });
 });
@@ -79,10 +77,7 @@ describe('Bograch server', function () {
   });
 
   it('should return server if transporter is found', function () {
-    bo.use('foo', {
-      name: 'foo',
-      on: function () {}
-    });
+    bo.use('foo', transporterMock);
     expect(bo.server('foo', { name: 'test' })).not.to.be.a('null');
   });
 });

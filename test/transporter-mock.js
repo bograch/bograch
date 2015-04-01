@@ -1,22 +1,43 @@
 'use strict';
 
-function Transporter() {
-  this.name = 'mock';
-  this._methods = {};
-  this._onCall = [];
+var EventEmitter = require('events').EventEmitter;
+
+var methods = {};
+var ee = new EventEmitter();
+
+//
+// ServerTransporter
+//
+function ServerTransporter() {
 }
 
-Transporter.prototype.on = function (method, cb) {
-  this._methods[method] = cb;
+ServerTransporter.prototype.start = function (cb) {
+  cb();
 };
 
-Transporter.prototype.call = function (method, args, cb) {
-  this._onCall.forEach(function (fn) {
-    fn(method, args, cb);
-  });
-  if (this._methods[method]) {
-    this._methods[method](args, cb);
+ServerTransporter.prototype.on = function (method, cb) {
+  methods[method] = cb;
+};
+
+
+//
+// ClientTransporter
+//
+function ClientTransporter() {
+}
+
+ClientTransporter.prototype.call = function (method, args, cb) {
+  ee.emit('call', method, args, cb);
+  if (methods[method]) {
+    methods[method](args, cb);
   }
 };
 
-module.exports = Transporter;
+ClientTransporter.prototype.connect = function (cb) {
+  cb();
+};
+
+exports.name = 'mock';
+exports.ServerTransporter = ServerTransporter;
+exports.ClientTransporter = ClientTransporter;
+exports.ee = ee;
