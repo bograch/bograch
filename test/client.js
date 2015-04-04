@@ -2,13 +2,13 @@
 
 var Client = require('../lib/client');
 var expect = require('chai').expect;
-var transporter = require('./transporter-mock');
-var ClientTransporter = transporter.ClientTransporter;
+var transport = require('./transport-mock');
+var ClientTransport = transport.ClientTransport;
 var bo = require('../lib');
 
 var noop = function () {};
-var clientTransporter = new ClientTransporter();
-var boClient = new Client(clientTransporter, {
+var clientTransport = new ClientTransport();
+var boClient = new Client(clientTransport, {
   name: 'test'
 });
 
@@ -63,9 +63,9 @@ describe('Bograch client', function () {
   });
   
   describe('method', function () {
-    it('should pass argumets to transporter', function (done) {
+    it('should pass argumets to transport', function (done) {
       boClient.register(['fooBar']);      
-      transporter.ee.once('call', function (method, args, cb) {
+      transport.ee.once('call', function (method, args, cb) {
         expect(method).to.be.equal('test.fooBar');
         expect(args.length).to.be.equal(3);
         expect(args[0]).to.be.equal(1);
@@ -81,7 +81,7 @@ describe('Bograch client', function () {
   
   describe('proxy', function () {
     it('returned by the server', function (done) {
-      bo.use(transporter);
+      bo.use(transport);
       var server = bo.server('mock', {
         name: 'proxy'
       });

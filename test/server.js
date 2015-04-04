@@ -3,12 +3,12 @@
 var Server = require('../lib/server');
 var Client = require('../lib/client');
 var expect = require('chai').expect;
-var ServerTransporter = require('./transporter-mock').ServerTransporter;
-var ClientTransporter = require('./transporter-mock').ClientTransporter;
+var ServerTransport = require('./transport-mock').ServerTransport;
+var ClientTransport = require('./transport-mock').ClientTransport;
 
 var noop = function () {};
-var serverTransporter = new ServerTransporter();
-var boServer = new Server(serverTransporter, {
+var serverTransport = new ServerTransport();
+var boServer = new Server(serverTransport, {
   name: 'test'
 });
 
@@ -39,7 +39,7 @@ describe('Bograch server addMethod', function () {
 });
 
 describe('Bograch client/server communication', function () {
-  var boClient = new Client(new ClientTransporter(), {
+  var boClient = new Client(new ClientTransport(), {
     name: 'test',
     ttl: 10
   });

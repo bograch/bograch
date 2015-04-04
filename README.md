@@ -1,4 +1,9 @@
-# Bograch [![Dependency Status](https://david-dm.org/zkochan/bograch/status.svg?style=flat)](https://david-dm.org/zkochan/bograch) [![Build Status](http://img.shields.io/travis/zkochan/bograch.svg?style=flat)](https://travis-ci.org/zkochan/bograch)
+# Bograch
+
+[![Dependency Status](https://david-dm.org/zkochan/bograch/status.svg?style=flat)](https://david-dm.org/zkochan/bograch)
+[![Build Status](http://img.shields.io/travis/zkochan/bograch.svg?style=flat)](https://travis-ci.org/zkochan/bograch)
+
+
 Bograch is a tool for abstracting RPC (remote procedure call) communication between/with NodeJS microservices.
 
 Usage
