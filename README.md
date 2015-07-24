@@ -24,11 +24,11 @@ var server = bo.server('amqp', {
   name: 'mathOperations'
 });
 
-server.on('sum', function (a, b, cb) {
+server.on('sum', function(a, b, cb) {
   cb(null, a + b);
 });
 
-server.on('factorial', function (n, cb) {
+server.on('factorial', function(n, cb) {
   var f = 1;
   for (var i = 2; i <= n; i++) {
     f *= i;
@@ -45,11 +45,11 @@ client.register(['sum', 'factorial']);
 
 var Math = client.methods;
 
-Math.sum(12, 2, function (err, sum) {
+Math.sum(12, 2, function(err, sum) {
   console.log(sum);
 });
 
-Math.factorial(10, function (err, result) {
+Math.factorial(10, function(err, result) {
   console.log(result);
 });
 ```
