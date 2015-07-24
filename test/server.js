@@ -6,46 +6,46 @@ var expect = require('chai').expect;
 var ServerTransport = require('./transport-mock').ServerTransport;
 var ClientTransport = require('./transport-mock').ClientTransport;
 
-var noop = function () {};
+var noop = function() {};
 var serverTransport = new ServerTransport();
 var boServer = new Server(serverTransport, {
   name: 'test'
 });
 
-describe('Bograch server addMethod', function () {
-  it('should throw an error if no parameters were passed', function () {
-    expect(function () {
+describe('Bograch server addMethod', function() {
+  it('should throw an error if no parameters were passed', function() {
+    expect(function() {
       boServer.addMethod();
     }).to.throw(TypeError, 'Bograch.addMethod requires a methodName');
   });
 
-  it('should throw an error if no callback function is passed', function () {
-    expect(function () {
+  it('should throw an error if no callback function is passed', function() {
+    expect(function() {
       boServer.addMethod('foo');
     }).to.throw(TypeError, 'Bograch.addMethod requires a callback function');
   });
 
-  it('should throw an error if invalid callback function is passed', function () {
-    expect(function () {
+  it('should throw an error if invalid callback function is passed', function() {
+    expect(function() {
       boServer.addMethod('foo', 234);
     }).to.throw(TypeError, 'Bograch.addMethod requires a callback function');
   });
 
-  it('should not throw an exception if the second parameter is a callback function', function () {
-    expect(function () {
+  it('should not throw an exception if the second parameter is a callback function', function() {
+    expect(function() {
       boServer.addMethod('foo', noop);
     }).not.to.throw(Error);
   });
 });
 
-describe('Bograch client/server communication', function () {
+describe('Bograch client/server communication', function() {
   var boClient = new Client(new ClientTransport(), {
     name: 'test',
     ttl: 10
   });
 
-  it('should pass all the arguments', function (done) {
-    boServer.addMethod('sum', function (a, b, cb) {
+  it('should pass all the arguments', function(done) {
+    boServer.addMethod('sum', function(a, b, cb) {
       expect(a).to.be.equal(32);
       expect(b).to.be.equal(54);
       expect(typeof cb).to.be.equal('function');
@@ -54,28 +54,28 @@ describe('Bograch client/server communication', function () {
     boClient.call('sum', 32, 54);
   });
 
-  it('should return error if remote method has an uncaught exception', function (done) {
-    boServer.addMethod('exception', function (cb) {
+  it('should return error if remote method has an uncaught exception', function(done) {
+    boServer.addMethod('exception', function(cb) {
       throw 'foo';
     });
-    boClient.call('exception', function (err) {
+    boClient.call('exception', function(err) {
       expect(err).to.be.equal('foo');
       done();
     });
   });
 
-  it('should return error if remote method timed out', function (done) {
-    boServer.addMethod('timeout', function (cb) {
+  it('should return error if remote method timed out', function(done) {
+    boServer.addMethod('timeout', function(cb) {
       'I am not calling the callback function. Ever!';
     });
-    boClient.call('timeout', function (err) {
+    boClient.call('timeout', function(err) {
       expect(err.type).to.be.equal('responseTimeout');
       done();
     });
   });
 
-  it('should return error if remote method does not exist', function (done) {
-    boClient.call('lochNess', function (err) {
+  it('should return error if remote method does not exist', function(done) {
+    boClient.call('lochNess', function(err) {
       expect(err.type).to.be.equal('invalidMethod');
       done();
     });

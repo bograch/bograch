@@ -12,10 +12,14 @@
     "node",
     "communication"
   ],
-  "author": "Zoltan Kochan",
+  "author": {
+    "name": "Zoltan Kochan",
+    "email": "zoltan.kochan@gmail.com",
+    "url": "http://kochan.io"
+  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/zkochan/bograch.git"
+    "url": "git://github.com/bograch/bograch.git"
   },
   "license": "MIT",
   "devDependencies": {

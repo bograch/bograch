@@ -11,11 +11,11 @@ var ee = new EventEmitter();
 function ServerTransport() {
 }
 
-ServerTransport.prototype.start = function (cb) {
+ServerTransport.prototype.start = function(cb) {
   cb();
 };
 
-ServerTransport.prototype.on = function (method, cb) {
+ServerTransport.prototype.on = function(method, cb) {
   methods[method] = cb;
 };
 
@@ -26,14 +26,14 @@ ServerTransport.prototype.on = function (method, cb) {
 function ClientTransport() {
 }
 
-ClientTransport.prototype.call = function (method, args, cb) {
+ClientTransport.prototype.call = function(method, args, cb) {
   ee.emit('call', method, args, cb);
   if (methods[method]) {
     methods[method](args, cb);
   }
 };
 
-ClientTransport.prototype.connect = function (cb) {
+ClientTransport.prototype.connect = function(cb) {
   cb();
 };
 

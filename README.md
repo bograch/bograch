@@ -1,13 +1,14 @@
-# Bograch
-
-[![Dependency Status](https://david-dm.org/bograch/bograch.svg)](https://david-dm.org/bograch/bograch)
-[![Build Status](https://travis-ci.org/bograch/bograch.svg?branch=master)](https://travis-ci.org/bograch/bograch)
-
+# bograch
 
 Bograch is a tool for abstracting RPC (remote procedure call) communication between/with NodeJS microservices.
 
-Usage
-======
+[![Dependency Status](https://david-dm.org/bograch/bograch.svg)](https://david-dm.org/bograch/bograch)
+[![Build Status](https://travis-ci.org/bograch/bograch.svg?branch=master)](https://travis-ci.org/bograch/bograch)
+[![npm version](https://badge.fury.io/js/bograch.svg)](http://badge.fury.io/js/bograch)
+
+
+## Usage
+
 Add a transporter.
 ``` js
 var bo = require('bograch');
@@ -53,7 +54,7 @@ Math.factorial(10, function (err, result) {
 });
 ```
 
-License
-========
+
+## License
 
 The MIT License (MIT)
